@@ -5,14 +5,18 @@ Required:
     - api_management_name
     - app_id
     - app_secret
+    - app_secret_key_vault_id (alternative to app_secret - read from Key Vault instead)
+    - app_secret_key_vault_secret_name (alternative to app_secret - read from Key Vault instead)
     - resource_group_name
 EOT
 
   type = map(object({
-    api_management_name = string
-    app_id              = string
-    app_secret          = string
-    resource_group_name = string
+    api_management_name              = string
+    app_id                           = string
+    app_secret                       = string
+    app_secret_key_vault_id          = optional(string)
+    app_secret_key_vault_secret_name = optional(string)
+    resource_group_name              = string
   }))
   validation {
     condition = alltrue([
